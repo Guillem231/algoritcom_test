@@ -36,3 +36,32 @@ Este proyecto está diseñado para facilitar la puesta en marcha de un entorno d
    ```
    make start
    ```
+
+## Controles del Juego
+
+Este proyecto incluye un avatar 3D interactivo con los siguientes controles:
+
+### Movimiento Básico
+- **WASD / Teclas de flecha**: Mover el personaje
+- **Espacio**: Saltar
+- **Shift**: Correr (aumenta la velocidad)
+
+### Acciones Especiales
+- **C**: Bailar (realiza una animación de baile)
+- **E**: Montar/Desmontar Skateboard (cuando estés cerca de uno)
+
+### Control de Cámara
+- **Botón Derecho del Ratón**: Cambiar entre modo de cámara automática y manual
+  - **Modo Automático**: La cámara sigue al personaje automáticamente
+  - **Modo Manual**: Controlas la cámara libremente
+    - **Clic + Arrastrar**: Orbitar la cámara alrededor del personaje
+    - **Rueda del Ratón**: Acercar/Alejar (zoom)
+
+### Características Especiales
+- **Skateboard**: Acércate al skateboard y presiona E para montarlo. Mientras estás en el skateboard:
+  - El movimiento es más fluido y rápido
+  - La cámara se ajusta para una mejor visualización
+  - Presiona E nuevamente para desmontar
+
+La interfaz de usuario muestra el modo de cámara actual en la esquina superior derecha y todos los controles disponibles en la esquina inferior izquierda para referencia rápida.
+

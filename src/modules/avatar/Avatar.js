@@ -9,7 +9,7 @@ import React, {
 import { useFrame, useThree } from '@react-three/fiber';
 import { RigidBody, CapsuleCollider, useRapier } from '@react-three/rapier';
 import * as THREE from 'three';
-import { useKeyboardControls, E, DIRECTIONS } from '@/modules/avatar/hooks/useKeyboardControls';
+import { useKeyboardControls, E, C, DIRECTIONS } from '@/modules/avatar/hooks/useKeyboardControls';
 import FBXAvatar from './FBXAvatar';
 import { PHYSICS } from './constants/physics';
 import { MODEL_PATH, ANIMATION_PATHS, ANIMATION_STATES } from './config/animationConfig';
@@ -100,7 +100,6 @@ const Avatar = forwardRef(
 
       return () => clearInterval(intervalId);
     }, [skateboardRef, checkSkateProximity]);
-
     useEffect(() => {
       if (controls[E] && controls[E] !== controls.ePrevious) {
         if (isNearSkate && !isOnSkate) {
@@ -114,6 +113,14 @@ const Avatar = forwardRef(
       controls.ePrevious = controls[E];
     }, [controls, isNearSkate, isOnSkate, mountSkateboard, dismountSkateboard]);
 
+    useEffect(() => {
+      if (controls[C] && !controls.cPrevious) {
+        setIsDancing(prevState => !prevState);
+      }
+      
+      controls.cPrevious = controls[C];
+    }, [controls, controls.cPrevious]);
+
     useFrame((state, delta) => {
       if (!rigidBodyRef.current || !avatarRef.current || !isInit) return;
 
@@ -121,6 +128,11 @@ const Avatar = forwardRef(
       const directionPressed = DIRECTIONS.some(key => controls[key]);
 
       let nextAnimationState = ANIMATION_STATES.IDLE;
+
+      if (isDancing) {
+        updateAnimation(ANIMATION_STATES.DANCING);
+        return; 
+      }
 
       if (isOnSkate && skateboardRef.current) {
         nextAnimationState = ANIMATION_STATES.SKATEBOARDING;
@@ -131,21 +143,16 @@ const Avatar = forwardRef(
 
       if (!isJumping || nextAnimationState === ANIMATION_STATES.JUMPING) {
         updateAnimation(
-          isDancing
-            ? ANIMATION_STATES.DANCING
-            : isOnSkate && directionPressed
-              ? ANIMATION_STATES.SKATEBOARDING
-              : nextAnimationState
+          isOnSkate && directionPressed
+            ? ANIMATION_STATES.SKATEBOARDING
+            : nextAnimationState
         );
       }
 
       if (!isManualCameraMode) {
         updateCamera();
       }
-
-      controls.sitPrevious = controls.C;
     });
-
     return (
       <>
         <RigidBody

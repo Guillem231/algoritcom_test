@@ -19,6 +19,10 @@ export const useAvatarMovement = (
     (controls, delta, camera) => {
       if (!rigidBodyRef.current || !avatarRef.current) return ANIMATION_STATES.IDLE;
 
+      if (isDancing) {
+        return ANIMATION_STATES.DANCING;
+      }
+
       let animationState = ANIMATION_STATES.IDLE;
       const directionPressed = [W, A, S, D].some(key => controls[key]);
 
@@ -41,11 +45,6 @@ export const useAvatarMovement = (
         setTimeout(() => {
           setIsJumping(false);
         }, MOVEMENT.JUMP_DURATION);
-      }
-
-      if (controls[C] && controls[C] !== controls.sitPrevious) {
-        setIsDancing(!isDancing);
-        animationState = isDancing ? ANIMATION_STATES.IDLE : ANIMATION_STATES.DANCING;
       }
 
       if (!isDancing && directionPressed && !isJumping) {
@@ -88,8 +87,6 @@ export const useAvatarMovement = (
 
       return animationState;
     },
-    [rigidBodyRef, avatarRef, rotationRef, isJumping, setIsJumping, isDancing, setIsDancing]
-  );
-
-  return { handleMovement };
+    [rigidBodyRef, avatarRef, rotationRef, isJumping, setIsJumping, isDancing]
+  );  return { handleMovement };
 };

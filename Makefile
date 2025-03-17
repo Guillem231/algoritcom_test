@@ -35,5 +35,7 @@ welcome:
 
 start:
 	@clear
+	@echo "$$WELCOME_ART"
+	@echo ""
 	@echo " Encendiendo motores en $(PROJECT_NAME)..."
 	@$(START_CMD)
