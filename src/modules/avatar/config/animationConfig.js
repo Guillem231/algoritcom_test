@@ -5,7 +5,6 @@ export const ANIMATION_PATHS = {
   walking: '/models/walking.fbx',
   running: '/models/running.fbx',
   jumping: '/models/jumping.fbx',
-  falling: '/models/falling.fbx',
   dancing: '/models/dancing.fbx',
   skateboarding: '/models/skateboarding.fbx'
 };
@@ -16,6 +15,5 @@ export const ANIMATION_STATES = {
   RUNNING: 'running',
   JUMPING: 'jumping',
   DANCING: 'dancing',
-  FALLING: 'falling',
   SKATEBOARDING: 'skateboarding'
 };

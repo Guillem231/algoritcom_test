@@ -19,7 +19,6 @@ const Avatar = forwardRef(({
   skateboardRef, 
   isManualCameraMode = false, 
   onAnimationChange,
-  updatePlayerPosition
 }, ref) => {
   const rigidBodyRef = useRef();
   const avatarRef = useRef();
@@ -33,7 +32,6 @@ const Avatar = forwardRef(({
   const [isOnSkate, setIsOnSkate] = useState(false);
   const [isNearSkate, setIsNearSkate] = useState(false);
   
-  const { rapier } = useRapier();
   const controls = useKeyboardControls();
   const { camera } = useThree();
   
@@ -43,7 +41,6 @@ const Avatar = forwardRef(({
     animationState, 
     setAnimationState, 
     onAnimationChange, 
-    updatePlayerPosition,
     rigidBodyRef,
     avatarRef
   );
@@ -145,15 +142,7 @@ const Avatar = forwardRef(({
       updateCamera();
     }
     
-    if (updatePlayerPosition && rigidBodyRef.current) {
-      const pos = rigidBodyRef.current.translation();
-      updatePlayerPosition(
-        [pos.x, pos.y, pos.z],
-        avatarRef.current.rotation.y,
-        animationState
-      );
-    }
-    
+
     controls.sitPrevious = controls.C;
   });
   

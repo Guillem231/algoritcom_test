@@ -5,7 +5,6 @@ export const useAvatarAnimation = (
   animationState, 
   setAnimationState, 
   onAnimationChange, 
-  updatePlayerPosition,
   rigidBodyRef,
   avatarRef
 ) => {
@@ -18,16 +17,9 @@ export const useAvatarAnimation = (
         onAnimationChange(newState);
       }
       
-      if (updatePlayerPosition && rigidBodyRef.current && avatarRef.current) {
-        const pos = rigidBodyRef.current.translation();
-        updatePlayerPosition(
-          [pos.x, pos.y, pos.z],
-          avatarRef.current.rotation.y,
-          newState
-        );
-      }
+
     }
-  }, [animationState, setAnimationState, onAnimationChange, updatePlayerPosition, rigidBodyRef, avatarRef]);
+  }, [animationState, setAnimationState, onAnimationChange, rigidBodyRef, avatarRef]);
 
   return { updateAnimation };
 };

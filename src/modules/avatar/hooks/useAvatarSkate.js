@@ -89,7 +89,7 @@ export const useAvatarSkate = (
     
     rigidBodyRef.current.setTranslation({
       x: skatePos.x,
-      y: skatePos.y,
+      y: skatePos.y + SKATEBOARD.AVATAR_Y_OFFSET,
       z: skatePos.z
     }, true);
     

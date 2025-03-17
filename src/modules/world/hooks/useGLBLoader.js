@@ -21,9 +21,7 @@ export function useGLBLoader(scenePath, position = [0, -0.5, 0], scale = 0.03) {
     
     loader.load(
       scenePath,
-      (gltf) => {
-        console.log("Escena cargada, aplicando transformaciones");
-        
+      (gltf) => {        
         const glbScene = gltf.scene;
         
         glbScene.scale.set(scale, scale, scale);
@@ -81,17 +79,14 @@ export function useGLBLoader(scenePath, position = [0, -0.5, 0], scale = 0.03) {
         setIsLoaded(true);
         setIsLoading(false);
         
-        console.log("Escena añadida con éxito! Colliders creados:", collidersList.length);
       },
       (xhr) => {
         if (xhr.lengthComputable) {
           const percent = Math.round((xhr.loaded / xhr.total) * 100);
           setLoadingProgress(percent);
-          console.log(`Cargando escena: ${percent}% cargado`);
         }
       },
       (error) => {
-        console.error('Error cargando escena GLB:', error);
         setError(error);
         setIsLoading(false);
       }

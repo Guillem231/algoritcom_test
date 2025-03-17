@@ -13,9 +13,7 @@ import { CameraController } from './CameraController';
 import { SceneLighting } from './SceneLighting';
 import { WorldBoundaries } from './WorldBoundaries';
 import { GameUI } from '../ui/GameUI';
-import { RemotePlayers } from '../multiplayer/RemotePlayers';
 
-import useMultiplayer from './hooks/useMultiplayer';
 import { useWorldBounds } from './hooks/useWorldBounds';
 
 export default function Scene() {
@@ -31,7 +29,6 @@ export default function Scene() {
   
   const [currentAnimation, setCurrentAnimation] = useState('idle');
   
-  const { players, updatePlayerPosition, connected, socket } = useMultiplayer(avatarRef);
   
   const lastSentPosition = useRef(null);
   const lastSentRotation = useRef(null);
@@ -45,36 +42,7 @@ export default function Scene() {
     position: GLB.POSITION
   }), [GLB]);
   
-  useEffect(() => {
-    if (!avatarRef.current) return;
-  
 
-      if (avatarRef.current) {
-        const position = avatarRef.current.translation();
-        const pos = [position.x, position.y, position.z];
-        const rot = avatarRef.current?.rotation?.y || 0;
-      
-        const positionChanged = !lastSentPosition.current || 
-          Math.abs(pos[0] - lastSentPosition.current[0]) > 0.1 ||
-          Math.abs(pos[1] - lastSentPosition.current[1]) > 0.1 ||
-          Math.abs(pos[2] - lastSentPosition.current[2]) > 0.1;
-        
-        const rotationChanged = !lastSentRotation.current || 
-          Math.abs(rot - lastSentRotation.current) > 0.1;
-        
-        const animationChanged = currentAnimation !== lastSentAnimation.current;
-      
-        if (positionChanged || rotationChanged || animationChanged) {
-          updatePlayerPosition(pos, rot, currentAnimation);
-        
-          lastSentPosition.current = pos;
-          lastSentRotation.current = rot;
-          lastSentAnimation.current = currentAnimation;
-        }
-      }
-
-  
-  }, [avatarRef, updatePlayerPosition, currentAnimation]);
   
   return (
     <>
@@ -146,8 +114,6 @@ export default function Scene() {
       
       <GameUI 
         isManualCameraMode={isManualCameraMode} 
-        connected={connected} 
-        players={players} 
       />
       <Loader />
     </>

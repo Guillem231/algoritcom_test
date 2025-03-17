@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ALGORITCOM TEST GUILLEM PEDRET
 
-## Getting Started
+¡Bienvenido a este proyecto intergaláctico! En este repositorio encontrarás todo lo necesario para comenzar a hackear la matriz. Para facilitar el proceso, he configurado un Makefile con comandos predefinidos. ¡Sigue estos pasos para que tu setup esté listo en un instante!
 
-First, run the development server:
+## Introducción
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Este proyecto está diseñado para facilitar la puesta en marcha de un entorno de desarrollo moderno. Utiliza un Makefile que simplifica la instalación y ejecución a través de comandos como `make welcome` y `make start`. Sigue las instrucciones a continuación para que tu setup sea compatible y funcione sin problemas.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Requisitos Previos
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Node.js:** Se recomienda utilizar la versión LTS actual. La que he usado yo es la 20.15.0.
+- **npm:** Incluido con Node.js.
+- **Make:** Asegúrate de tener Make instalado en tu sistema para ejecutar los comandos automatizados.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Instalación
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   git clone https://github.com/tu_usuario/algoritcom_test.git
+   cd algoritcom_test

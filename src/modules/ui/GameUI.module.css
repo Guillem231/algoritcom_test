@@ -14,18 +14,7 @@
     right: 20px;
 }
 
-.connectionIndicator {
-    top: 60px;
-    right: 20px;
-}
 
-.connected {
-    color: green;
-}
-
-.disconnected {
-    color: red;
-}
 
 .instructions {
     position: absolute;

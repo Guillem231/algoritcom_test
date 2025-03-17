@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { SKATEBOARD_CONFIG } from '@/modules/skateboard/config/skateboardConfig';
 
-/**
- * Hook para manejar los límites del mundo para el skateboard
- */
+
 export function useWorldBoundaryEnforcer() {
   const { WORLD_BOUNDS } = SKATEBOARD_CONFIG;
   const { CENTER_X, CENTER_Z, SIDE_DISTANCE, FORWARD_DISTANCE, BOUNDARY_MARGIN } = WORLD_BOUNDS;
@@ -11,9 +9,7 @@ export function useWorldBoundaryEnforcer() {
   const [atBoundaryX, setAtBoundaryX] = useState(false);
   const [atBoundaryZ, setAtBoundaryZ] = useState(false);
   
-  /**
-   * Verifica si una posición está cerca de los límites del mundo
-   */
+ 
   const checkBoundaryProximity = (position) => {
     if (!position) return { x: false, z: false };
     
@@ -43,23 +39,19 @@ export function useWorldBoundaryEnforcer() {
     };
   };
   
-  /**
-   * Corrige la velocidad si estamos en un límite
-   */
+  
   const correctVelocityAtBoundary = (position, velocity, boundaries) => {
     if (!position || !velocity) return velocity;
     
     let newVelX = velocity.x;
     let newVelZ = velocity.z;
     
-    // Cancelar velocidad en X si estamos en un límite X
     if (boundaries.x) {
       if ((boundaries.nearXMin && velocity.x < 0) || (boundaries.nearXMax && velocity.x > 0)) {
         newVelX = 0;
       }
     }
     
-    // Cancelar velocidad en Z si estamos en un límite Z
     if (boundaries.z) {
       if ((boundaries.nearZMin && velocity.z < 0) || (boundaries.nearZMax && velocity.z > 0)) {
         newVelZ = 0;
@@ -69,23 +61,18 @@ export function useWorldBoundaryEnforcer() {
     return { x: newVelX, y: velocity.y, z: newVelZ };
   };
   
-  /**
-   * Corrige la posición para mantenerse dentro de los límites
-   */
+  
   const enforceWorldBoundaries = (proposedPosition) => {
     if (!proposedPosition) return proposedPosition;
     
-    // Verificar si la posición propuesta está dentro de los límites
     let x = proposedPosition.x;
     let z = proposedPosition.z;
     
-    // Aplicar restricciones
     if (x < CENTER_X - SIDE_DISTANCE) x = CENTER_X - SIDE_DISTANCE + BOUNDARY_MARGIN;
     if (x > CENTER_X + SIDE_DISTANCE) x = CENTER_X + SIDE_DISTANCE - BOUNDARY_MARGIN;
     if (z < CENTER_Z - FORWARD_DISTANCE) z = CENTER_Z - FORWARD_DISTANCE + BOUNDARY_MARGIN;
     if (z > CENTER_Z + FORWARD_DISTANCE) z = CENTER_Z + FORWARD_DISTANCE - BOUNDARY_MARGIN;
     
-    // Devolver la posición corregida
     return { x, y: proposedPosition.y, z };
   };
   

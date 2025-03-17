@@ -18,7 +18,6 @@ export default function FBXAvatar({
   const [loadAttempts, setLoadAttempts] = useState(0);
 
   const handleModelLoaded = useCallback(() => {
-    console.log(`FBX Model loaded: ${modelPath}`);
     setIsLoaded(true);
     if (onLoad) onLoad();
   }, [modelPath, onLoad]);
@@ -29,7 +28,6 @@ export default function FBXAvatar({
     
     if (loadAttempts < 3) {
       setTimeout(() => {
-        console.log(`Retrying model load: ${modelPath} (attempt ${loadAttempts + 1})`);
         setLoadAttempts(prev => prev + 1);
       }, 500);
     }

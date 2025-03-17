@@ -5,7 +5,7 @@ import { useSkateboardPhysics } from '@/modules/skateboard/hooks/useSkateboardPh
 import { useWorldBoundaryEnforcer } from '@/modules/skateboard/hooks/useWorldBoundaryEnforcer';
 import { SkateboardEffects } from './SkateboardEffects';
 import { SKATEBOARD_CONFIG } from '@/modules/skateboard/config/skateboardConfig';
-
+import * as THREE from 'three';
 
 const Skateboard = forwardRef(({ position = [0, 0, 0] }, ref) => {
   const skateRef = useRef();
