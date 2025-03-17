@@ -10,43 +10,46 @@ import * as THREE from 'three';
 const Skateboard = forwardRef(({ position = [0, 0, 0] }, ref) => {
   const skateRef = useRef();
   const rigidBodyRef = useRef();
-  
+
   const { model, isLoaded, renderFallback, modelConfig } = useSkateboardModel();
-  const { isRiding, setIsRiding, isNearby, setIsNearby, elevation, setElevation } = 
+  const { isRiding, setIsRiding, isNearby, setIsNearby, elevation, setElevation } =
     useSkateboardPhysics(rigidBodyRef, skateRef, position);
   const { enforceWorldBoundaries } = useWorldBoundaryEnforcer();
-  
+
   const { PHYSICS, COLLIDER } = SKATEBOARD_CONFIG;
-  
+
   useImperativeHandle(ref, () => ({
     rigidBody: rigidBodyRef.current,
     isRiding,
-    setIsRiding: (value) => {
+    setIsRiding: value => {
       setIsRiding(value);
       if (!value) {
         setIsNearby(true);
-        setTimeout(() => setIsNearby(false), 5000); 
+        setTimeout(() => setIsNearby(false), 5000);
       }
     },
     getPosition: () => rigidBodyRef.current.translation(),
-    setRotation: (angle) => {
+    setRotation: angle => {
       if (rigidBodyRef.current) {
         const quat = new THREE.Quaternion();
         quat.setFromAxisAngle(new THREE.Vector3(0, 1, 0), angle);
-        
-        rigidBodyRef.current.setRotation({
-          x: quat.x,
-          y: quat.y,
-          z: quat.z,
-          w: quat.w
-        }, true);
+
+        rigidBodyRef.current.setRotation(
+          {
+            x: quat.x,
+            y: quat.y,
+            z: quat.z,
+            w: quat.w,
+          },
+          true
+        );
       }
     },
     setElevation,
     enforceWorldBoundaries,
-    setNearby: (value) => {
+    setNearby: value => {
       setIsNearby(value);
-    }
+    },
   }));
 
   return (
@@ -54,7 +57,7 @@ const Skateboard = forwardRef(({ position = [0, 0, 0] }, ref) => {
       ref={rigidBodyRef}
       type="dynamic"
       position={[position[0], Math.max(position[1], PHYSICS.HOVER_HEIGHT), position[2]]}
-      colliders={false} 
+      colliders={false}
       mass={isRiding ? PHYSICS.MASS.RIDING : PHYSICS.MASS.DEFAULT}
       friction={PHYSICS.FRICTION}
       restitution={PHYSICS.RESTITUTION}
@@ -65,22 +68,24 @@ const Skateboard = forwardRef(({ position = [0, 0, 0] }, ref) => {
       contactForceEventThreshold={0}
     >
       <CuboidCollider args={COLLIDER.SIZE} />
-      
+
       <group ref={skateRef}>
         <Suspense fallback={renderFallback()}>
           {model ? (
-            <primitive 
-              object={model} 
-              scale={modelConfig.SCALE} 
-              position={modelConfig.POSITION} 
+            <primitive
+              object={model}
+              scale={modelConfig.SCALE}
+              position={modelConfig.POSITION}
               rotation={modelConfig.ROTATION}
               visible={true}
             />
-          ) : renderFallback()}
+          ) : (
+            renderFallback()
+          )}
         </Suspense>
-        
+
         <SkateboardEffects isRiding={isRiding} isVisible={!isRiding || isNearby} />
-        
+
         <mesh visible={false}>
           <boxGeometry args={COLLIDER.DEBUG_SIZE} />
           <meshBasicMaterial color="red" wireframe={true} />
@@ -89,7 +94,5 @@ const Skateboard = forwardRef(({ position = [0, 0, 0] }, ref) => {
     </RigidBody>
   );
 });
-
-
 
 export default Skateboard;

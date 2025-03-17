@@ -1,8 +1,7 @@
-import React from "react";
-import { motion } from "framer-motion";
-import clsx from "clsx";
-import styles from "./GameUI.module.css";
-
+import React from 'react';
+import { motion } from 'framer-motion';
+import clsx from 'clsx';
+import styles from './GameUI.module.css';
 
 export function CameraModeIndicator({ isManualCameraMode }) {
   return (
@@ -12,11 +11,10 @@ export function CameraModeIndicator({ isManualCameraMode }) {
       transition={{ duration: 0.3 }}
       className={clsx(styles.indicator, styles.cameraIndicator)}
     >
-       Cámara: <span className="font-bold">{isManualCameraMode ? "Manual" : "Automática"}</span>
+      Cámara: <span className="font-bold">{isManualCameraMode ? 'Manual' : 'Automática'}</span>
     </motion.div>
   );
 }
-
 
 export function GameInstructions() {
   return (
@@ -33,17 +31,23 @@ export function GameInstructions() {
         <li> Shift: Correr</li>
         <li> C: Bailar</li>
         <li> E: Montar/Desmontar Skate</li>
-        <li> <strong>Botón Derecho:</strong> Cambiar modo de cámara</li>
-        <li> <strong>Clic + Arrastrar:</strong> Orbitar</li>
-        <li><strong>Rueda del ratón:</strong> Zoom</li>
+        <li>
+          {' '}
+          <strong>Botón Derecho:</strong> Cambiar modo de cámara
+        </li>
+        <li>
+          {' '}
+          <strong>Clic + Arrastrar:</strong> Orbitar
+        </li>
+        <li>
+          <strong>Rueda del ratón:</strong> Zoom
+        </li>
       </ul>
     </div>
   );
 }
 
-
 export function GameUI({ isManualCameraMode }) {
-
   return (
     <>
       <CameraModeIndicator isManualCameraMode={isManualCameraMode} />

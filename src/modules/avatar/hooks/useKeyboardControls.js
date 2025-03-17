@@ -8,7 +8,7 @@ export const SHIFT = 'ShiftLeft';
 export const SPACE = 'Space';
 export const C = 'KeyC';
 export const DIRECTIONS = [W, A, S, D];
-export const E = 'KeyE'; 
+export const E = 'KeyE';
 
 export function useKeyboardControls() {
   const [controls, setControls] = useState({
@@ -18,7 +18,7 @@ export function useKeyboardControls() {
     [D]: false,
     [SPACE]: false,
     [SHIFT]: false,
-      [C]: false,
+    [C]: false,
     [E]: false,
   });
 
@@ -33,19 +33,18 @@ export function useKeyboardControls() {
         [D]: keys.has(D) || keys.has('ArrowRight'),
         [SPACE]: keys.has(SPACE),
         [SHIFT]: keys.has(SHIFT) || keys.has('ShiftRight'),
-          [C]: keys.has(C),
-              [E]: keys.has(E),
-
+        [C]: keys.has(C),
+        [E]: keys.has(E),
       });
     };
 
-    const handleKeyDown = (e) => {
-      if (e.repeat) return; 
+    const handleKeyDown = e => {
+      if (e.repeat) return;
       keys.add(e.code);
       updateControls();
     };
 
-    const handleKeyUp = (e) => {
+    const handleKeyUp = e => {
       keys.delete(e.code);
       updateControls();
     };

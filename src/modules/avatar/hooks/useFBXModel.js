@@ -4,32 +4,31 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 
 const modelCache = new Map();
 
-
 export function useFBXModel(modelPath, groupRef, onLoad) {
   const [model, setModel] = useState(null);
   const [mixer, setMixer] = useState(null);
 
   useEffect(() => {
     if (!modelPath) return;
-    
-    const setupModel = (fbx) => {
+
+    const setupModel = fbx => {
       fbx.scale.set(1, 1, 1);
-      fbx.traverse((child) => {
+      fbx.traverse(child => {
         if (child.isMesh) {
           child.castShadow = true;
           child.receiveShadow = true;
         }
       });
       if (!groupRef.current) {
-  console.warn(`Group ref not ready for player ${id}`);
-  return;
-}
+        console.warn(`Group ref not ready for player ${id}`);
+        return;
+      }
       groupRef.current?.add(fbx);
-      
+
       const newMixer = new THREE.AnimationMixer(fbx);
       setMixer(newMixer);
       setModel(fbx);
-      
+
       if (onLoad) {
         onLoad(fbx, newMixer, new Map());
       }
@@ -41,7 +40,7 @@ export function useFBXModel(modelPath, groupRef, onLoad) {
     }
 
     const loader = new FBXLoader();
-    loader.load(modelPath, (fbx) => {
+    loader.load(modelPath, fbx => {
       modelCache.set(modelPath, fbx.clone());
       setupModel(fbx);
     });

@@ -3,7 +3,7 @@ export const MOVEMENT = {
   RUNNING_VELOCITY: 6,
   JUMP_FORCE: 10,
   JUMP_PREPARATION_TIME: 300,
-  JUMP_DURATION: 1800
+  JUMP_DURATION: 1800,
 };
 
 export const TURNING = {
@@ -11,7 +11,5 @@ export const TURNING = {
   WALKING: 0.05,
   RUNNING: 0.08,
   RUNNING_SLOW: 0.04,
-  SKATE: 0.02
+  SKATE: 0.02,
 };
-
-

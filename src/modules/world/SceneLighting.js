@@ -4,14 +4,11 @@ import { SCENE_CONFIG } from '@/modules/world/config/sceneConfig';
 export function SceneLighting({ startPosition }) {
   const { LIGHTING } = SCENE_CONFIG;
   const [startX, startY, startZ] = startPosition;
-  
+
   return (
     <>
-      <ambientLight 
-        intensity={LIGHTING.AMBIENT.INTENSITY} 
-        color={LIGHTING.AMBIENT.COLOR} 
-      />
-      
+      <ambientLight intensity={LIGHTING.AMBIENT.INTENSITY} color={LIGHTING.AMBIENT.COLOR} />
+
       <directionalLight
         position={LIGHTING.DIRECTIONAL.POSITION}
         intensity={LIGHTING.DIRECTIONAL.INTENSITY}
@@ -28,12 +25,12 @@ export function SceneLighting({ startPosition }) {
         shadow-normalBias={0.05}
         color={LIGHTING.DIRECTIONAL.COLOR}
       />
-      
+
       <spotLight
         position={[
-          startX + LIGHTING.SPOT_LIGHT_1.POSITION[0], 
-          LIGHTING.SPOT_LIGHT_1.POSITION[1], 
-          startZ + LIGHTING.SPOT_LIGHT_1.POSITION[2]
+          startX + LIGHTING.SPOT_LIGHT_1.POSITION[0],
+          LIGHTING.SPOT_LIGHT_1.POSITION[1],
+          startZ + LIGHTING.SPOT_LIGHT_1.POSITION[2],
         ]}
         angle={LIGHTING.SPOT_LIGHT_1.ANGLE}
         penumbra={LIGHTING.SPOT_LIGHT_1.PENUMBRA}
@@ -44,12 +41,12 @@ export function SceneLighting({ startPosition }) {
         shadow-bias={-0.0001}
         color={LIGHTING.SPOT_LIGHT_1.COLOR}
       />
-      
+
       <spotLight
         position={[
-          startX + LIGHTING.SPOT_LIGHT_2.POSITION[0], 
-          LIGHTING.SPOT_LIGHT_2.POSITION[1], 
-          startZ + LIGHTING.SPOT_LIGHT_2.POSITION[2]
+          startX + LIGHTING.SPOT_LIGHT_2.POSITION[0],
+          LIGHTING.SPOT_LIGHT_2.POSITION[1],
+          startZ + LIGHTING.SPOT_LIGHT_2.POSITION[2],
         ]}
         angle={LIGHTING.SPOT_LIGHT_2.ANGLE}
         penumbra={LIGHTING.SPOT_LIGHT_2.PENUMBRA}
@@ -57,8 +54,8 @@ export function SceneLighting({ startPosition }) {
         castShadow={false}
         color={LIGHTING.SPOT_LIGHT_2.COLOR}
       />
-      
-      <hemisphereLight 
+
+      <hemisphereLight
         skyColor={LIGHTING.HEMISPHERE.SKY_COLOR}
         groundColor={LIGHTING.HEMISPHERE.GROUND_COLOR}
         intensity={LIGHTING.HEMISPHERE.INTENSITY}

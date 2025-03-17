@@ -4,7 +4,7 @@ import { SCENE_CONFIG } from '@/modules/world/config/sceneConfig';
 
 export function WorldBoundaries({ boundaries }) {
   const { DEBUG } = SCENE_CONFIG;
-  
+
   return (
     <>
       {boundaries.map((boundary, index) => (
