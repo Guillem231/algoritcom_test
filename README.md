@@ -18,5 +18,21 @@ Este proyecto está diseñado para facilitar la puesta en marcha de un entorno d
 
 ## Instalación
 
-   git clone https://github.com/tu_usuario/algoritcom_test.git
+1. Clona el repositorio:
+   ```
+   git clone https://github.com/Guillem231/algoritcom_test.git
    cd algoritcom_test
+   ```
+
+2. **Primera ejecución:**
+   Para instalar todas las dependencias y arrancar el proyecto por primera vez, ejecuta:
+   ```
+   make welcome
+   ```
+   Este comando instalará todas las dependencias necesarias y arrancará el proyecto correctamente.
+
+3. **Ejecuciones posteriores:**
+   Para iniciar el proyecto en futuras ocasiones, simplemente ejecuta:
+   ```
+   make start
+   ```
