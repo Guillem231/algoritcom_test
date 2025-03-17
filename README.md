@@ -20,8 +20,8 @@ Este proyecto está diseñado para facilitar la puesta en marcha de un entorno d
 
 1. Clona el repositorio:
    ```
-   git clone https://github.com/Guillem231/algoritcom_test.git
-   cd algoritcom_test
+   git clone https://github.com/Guillem231/algoritcom_test.git algoritcom_test_guillem
+   cd algoritcom_test_guillem
    ```
 
 2. **Primera ejecución:**
