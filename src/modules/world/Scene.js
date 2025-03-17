@@ -52,7 +52,6 @@ export default function Scene() {
           alpha: true,
           antialias: true,
           toneMapping: THREE.ACESFilmicToneMapping,
-          outputEncoding: THREE.sRGBEncoding,
           shadowMap: {
             enabled: true,
             type: THREE.PCFSoftShadowMap,
@@ -94,8 +93,6 @@ export default function Scene() {
           />
 
           <WorldBoundaries boundaries={worldBoundaries} />
-
-          {/* <RemotePlayers players={players} socket={socket} /> */}
         </Physics>
 
         {DEBUG && (

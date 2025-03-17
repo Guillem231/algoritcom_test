@@ -69,6 +69,7 @@ export function useGLBLoader(scenePath, position = [0, -0.5, 0], scale = 0.03) {
               collidersList.push({
                 position: [center.x, center.y, center.z],
                 size: [size.x / 2, size.y / 2, size.z / 2],
+                type: 'object',
               });
             }
           }

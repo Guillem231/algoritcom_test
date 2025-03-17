@@ -1,53 +1,56 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import clsx from 'clsx';
-import styles from './GameUI.module.css';
+
 
 export function CameraModeIndicator({ isManualCameraMode }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className={clsx(styles.indicator, styles.cameraIndicator)}
-    >
-      Cámara: <span className="font-bold">{isManualCameraMode ? 'Manual' : 'Automática'}</span>
-    </motion.div>
-  );
-}
-
-export function GameInstructions() {
-  return (
-    <div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className={styles.instructions}
-    >
-      <strong>Controles:</strong>
-      <ul>
-        <li> WASD / Flechas: Mover</li>
-        <li> Espacio: Saltar</li>
-        <li> Shift: Correr</li>
-        <li> C: Bailar</li>
-        <li> E: Montar/Desmontar Skate</li>
-        <li>
-          {' '}
-          <strong>Botón Derecho:</strong> Cambiar modo de cámara
-        </li>
-        <li>
-          {' '}
-          <strong>Clic + Arrastrar:</strong> Orbitar
-        </li>
-        <li>
-          <strong>Rueda del ratón:</strong> Zoom
-        </li>
-      </ul>
+    <div style={{ 
+      position: 'absolute', 
+      top: 20, 
+      right: 20, 
+      color: 'white',
+      background: 'rgba(0,0,0,0.7)',
+      padding: '10px',
+      borderRadius: '5px',
+      fontFamily: 'monospace',
+      fontSize: '24px'
+    }}>
+      Cámara: {isManualCameraMode ? "Manual" : "Automática"}
     </div>
   );
 }
 
+
+export function GameInstructions() {
+  return (
+    <div style={{ 
+      position: 'absolute', 
+      bottom: 20, 
+      left: 20, 
+      color: 'white',
+      background: 'rgba(0,0,0,0.7)',
+      padding: '10px',
+      borderRadius: '5px',
+      fontFamily: 'monospace'
+    }}>
+      <strong>Controles:</strong><br />
+      WASD / Flechas: Mover<br />
+      Espacio: Saltar<br />
+      Shift: Correr<br />
+      C: Bailar<br />
+      E: Montar/Desmontar Skate<br />
+      <strong>Botón Derecho: Cambiar modo de cámara</strong><br />
+      <strong>En modo manual:</strong><br />
+      <strong>- Clic + Arrastrar: Orbitar</strong><br />
+      <strong>- Rueda del ratón: Zoom</strong>
+    </div>
+  );
+}
+
+/**
+ * Componente principal que contiene todos los elementos UI
+ */
 export function GameUI({ isManualCameraMode }) {
+  
   return (
     <>
       <CameraModeIndicator isManualCameraMode={isManualCameraMode} />

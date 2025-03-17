@@ -7,10 +7,12 @@ export function SceneColliders({ colliders, visible = false }) {
   return (
     <>
       {colliders.map((collider, index) => {
-        if (!collider || !collider.position || !collider.size) {
+        if (!collider || !collider.position || (!collider.size && !collider.geometry)) {
           console.warn(`Collider ${index} tiene formato inválido:`, collider);
           return null;
         }
+
+        const size = collider.size || collider.geometry;
 
         return (
           <RigidBody
@@ -23,9 +25,9 @@ export function SceneColliders({ colliders, visible = false }) {
             <mesh visible={visible}>
               <boxGeometry
                 args={[
-                  Math.max(collider.size[0] * 2, 0.1),
-                  Math.max(collider.size[1] * 2, 0.1),
-                  Math.max(collider.size[2] * 2, 0.1),
+                  Math.max(size[0] * 2, 0.1),
+                  Math.max(size[1] * 2, 0.1),
+                  Math.max(size[2] * 2, 0.1),
                 ]}
               />
               <meshStandardMaterial
